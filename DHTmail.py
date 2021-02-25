@@ -11,21 +11,21 @@ num= str(temperature)[:str(temperature).find('.')+2]
         
 content = MIMEMultipart()
 content["subject"] = "Temperature Warning Message"  #郵件標題
-content["from"] = "mingyan0319@gmail.com"  #寄件者
-content["to"] = "mingyan0319@gmail.com,ttz013378@tzuchi.org.tw,ubuntu@tzuchi.org.tw" #收件者
+content["from"] = "test@mail.com"  #寄件者
+content["to"] = "test@mail.com" #收件者
 content.attach(MIMEText("Temperature too high greater than 25°C ,It's "+ num + "°C now"))
 
 content1 = MIMEMultipart()
 content1["subject"] = "Temperature Warning Message"  #郵件標題
-content1["from"] = "mingyan0319@gmail.com"  #寄件者
-content1["to"] = "mingyan0319@gmail.com" #收件者
+content1["from"] = "test@mail.com"  #寄件者
+content1["to"] = "test@mail.com" #收件者
 content1.attach(MIMEText("Temperature is too low, below 18°C ,It's "+ num + "°C now"))
 
 with smtplib.SMTP(host="smtp.gmail.com", port="587") as smtp:  # 設定SMTP伺服器
     try:
         smtp.ehlo()  # 驗證SMTP伺服器
         smtp.starttls()  # 建立加密傳輸
-        smtp.login("mingyan0319@gmail.com","pxgmkmjyuytcypar")
+        smtp.login("test@mail.com","password")
         if temperature > 25:
             smtp.send_message(content) # 寄送郵件
             print("Mailed!")
